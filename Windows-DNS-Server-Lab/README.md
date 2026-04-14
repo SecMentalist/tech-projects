@@ -134,9 +134,7 @@ PTR record for `192.168.10.1`
 
 **Solution:** Used the existing reverse lookup zone and added the PTR record manually.
 
-### Issue 4: Windows 11 PIN login failure after reboot
 
-**Solution:** Used Windows Recovery Environment (WinRE) to replace Utilman.exe with cmd.exe, then reset the local Administrator password via `net user Administrator NewPassword123`. Restored Utilman.exe after login.
 
 ## Conclusion
 
