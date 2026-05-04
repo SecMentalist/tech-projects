@@ -36,7 +36,7 @@ I will now write my incident report based on my analysis.
 ### Cybersecurity Incident Report – Network Traffic Analysis
 
 **Report author:** Robert Ursache  
-**Date:** 4 May 20026
+**Date:** 4 May 2026
 
 #### Part 1: Summary of the Problem (DNS & ICMP Traffic Log)
 
@@ -86,6 +86,24 @@ Several customers of the client reported that they could not access `www.space.c
 
 **Likely Cause of the Incident**  
 The DNS service (daemon) on the DNS server (`203.0.113.2`) was either **stopped, crashed, or not properly running**. Because no process was bound to UDP port 53, the server’s network stack responded with an ICMP “port unreachable” error instead of a DNS answer. This could result from an accidental service stop, a system misconfiguration, a crash, or a firewall rule that blocked only the DNS port while still allowing ICMP responses.
+
+**Recommended Next Steps**  
+
+Based on the likely cause (DNS service stopped, crashed, or blocked), here are the recommended actions to resolve the incident and prevent recurrence:
+
+1. **Verify DNS service status** – Log into the DNS server (`203.0.113.2`) and check if the DNS daemon (e.g., `named`, `systemd-resolved`, or Windows DNS Server) is running. If stopped, start it immediately.
+
+2. **Check service logs** – Examine DNS server logs for errors or crash indicators (e.g., `/var/log/messages`, `/var/log/syslog`, or Event Viewer). Look for configuration issues, resource exhaustion, or unauthorised stop commands.
+
+3. **Review firewall rules** – Ensure that UDP port 53 is allowed on the DNS server’s local firewall and any network firewalls. The ICMP response indicates the server is reachable, but a firewall may be blocking only port 53.
+
+4. **Restart DNS service** – If the service is running but unresponsive, restart it gracefully. Test resolution with `nslookup space.com 203.0.113.2` after restart.
+
+5. **Set up monitoring** – Configure alerts for DNS service health (e.g., using Nagios, Zabbix, or a simple cron job) to detect future stops or crashes.
+
+6. **Document the incident** – Record the root cause, resolution steps, and any preventive measures in the knowledge base for future reference.
+
+> **Note:** All the following actions must be performed on the DNS server itself (`203.0.113.2`), not on the analyst’s workstation where `tcpdump` was run.
 
 ---
 
