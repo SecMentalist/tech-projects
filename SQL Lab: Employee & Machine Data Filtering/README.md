@@ -1,4 +1,4 @@
-# 🧪 SQL-employee-machine-filtering
+# 🧪 SQL Lab: Employee & Machine Data Filtering
 
 ## 📌 Scenario (fictional)
 
