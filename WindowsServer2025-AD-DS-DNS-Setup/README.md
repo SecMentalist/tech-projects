@@ -116,7 +116,13 @@ After the final reboot, I verified the installation by:
 
         ADSI Edit
 
+DNS & Network Connectivity Verification
+
+✅ **DNS Verification:** Successfully resolved external domain names (e.g., `neverssl.com` → `34.223.124.45`) using the configured DNS server (`10.10.0.1`), confirming DNS services are fully operational.
+✅ **Network Connectivity:** Verified outbound HTTP/HTTPS traffic to external resources, ensuring the server can communicate with the internet for updates and client services.
+
 All tools were successfully installed and available for use.
+
 Summary of Deployment
 Attribute	Details
 Operating System	Windows Server (2025 / 2022 / 2019)
@@ -124,4 +130,5 @@ Primary Role	Active Directory Domain Services
 Additional Role	Active Directory Certificate Services
 Management Features	Group Policy Management, RSAT, PowerShell Module
 Domain Name	RobTech
+DNS Verification	✅ Successfully resolved external domain neverssl.com to 34.223.124.45 using DNS server 10.10.0.1; outbound HTTP/HTTPS connectivity confirmed.
 Deployment Status	✅ Successfully Installed and Verified
